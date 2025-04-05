@@ -1,0 +1,34 @@
+﻿@page "/products"
+
+<h3>Products</h3>
+
+@if(products is null){
+    <p>Loading....</p>
+}
+else
+{
+    <ul>
+        @foreach (var product in products)
+        {
+            <li>@product.Name - $@product.Price</li>
+        }
+    </ul>
+}
+
+@code{
+    private List<Product> products;
+
+    protected override async Task OnInitializedAsync(){
+        products = new List<Product>()
+        {
+            new Product{Name = "Laptop", Price = 999.99 },
+            new Product{Name = "Mouse", Price = 49.99 }
+
+        };
+    }
+    public class Product{
+        public string Name { get; set; }
+        public double Price { get; set; }
+    }
+
+}
